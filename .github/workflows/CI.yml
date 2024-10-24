@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      WORKING_DIR: add #change this to the rust project name you are developing.
+      WORKING_DIR: add_sub
 
     steps:
     - name: Checkout code
@@ -41,8 +41,12 @@ jobs:
       run: make release
       working-directory: ${{ env.WORKING_DIR }}
 
+    - name: Run
+      run: make run
+      working-directory: ${{ env.WORKING_DIR }}
+
     - name: Upload Binary Artifact
       uses: actions/upload-artifact@v4 #v3 is scheduled for deprecation Nov 30 2024 check marketplace
       with:
         name: release-binary
-        path: ${{ env.WORKING_DIR }}/target/release/minigrep
+        path: ${{ env.WORKING_DIR }}/target/release/add_sub
